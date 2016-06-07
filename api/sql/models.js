@@ -104,7 +104,10 @@ export class Entries {
       return knex('votes')
         .where({ entry_id, username })
         .select(['id', 'vote_value'])
-        .first();
+        .first()
+        .then(doc => {
+          return doc || { vote_value: 0 };
+        });
     })
   }
 

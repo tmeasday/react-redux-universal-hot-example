@@ -35,6 +35,12 @@ app.use(Express.static(path.join(__dirname, '..', 'static')));
 app.use('/graphql', (req, res) => {
   proxy.web(req, res, {target: targetUrl + '/graphql'});
 });
+app.use('/login', (req, res) => {
+  proxy.web(req, res, {target: targetUrl + '/login'});
+});
+app.use('/logout', (req, res) => {
+  proxy.web(req, res, {target: targetUrl + '/logout'});
+});
 
 // added the error handling to avoid https://github.com/nodejitsu/node-http-proxy/issues/527
 proxy.on('error', (error, req, res) => {
